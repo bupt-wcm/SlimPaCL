@@ -1,6 +1,6 @@
 environ:
   gpu: "0, "
-  prefix: CovNetL4-IDT_N20_IT3_A0.4
+  prefix: CovNetL4-IDT_N20_IT3_A0.4-PaPro_W0.3
   postfix: Baseline
   save_prefix: './exp_runs'
   seed: 9721
@@ -50,7 +50,7 @@ model:
       iters: 3
       alpha: 0.4
 
-    pacl: False
+    pacl: True
     pacl_mode: 'pro'
     pacl_loss_weight:
       - 1.0

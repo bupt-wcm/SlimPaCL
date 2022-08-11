@@ -1,6 +1,6 @@
 environ:
   gpu: "0, "
-  prefix: CovNetL4-IDT_N20_IT3_A0.4
+  prefix: CovNetL4
   postfix: Baseline
   save_prefix: './exp_runs'
   seed: 9721
@@ -44,7 +44,7 @@ model:
       params:
         pooling_num: 2
 
-    idt: True
+    idt: False
     idt_params:
       embed_num: 20
       iters: 3
@@ -59,7 +59,7 @@ model:
     rot: False
     rot_loss_weight: 0.3
 
-    x_classifier: False
+    x_classifier: True
     x_classifier_type: proto
 
   learning:
