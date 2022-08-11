@@ -1,0 +1,87 @@
+environ:
+  gpu: "1, "
+  prefix: CovNetL4-IDT_N20_IT3_A0.4-PaProCL0.3
+  postfix: Baseline
+  save_prefix: './exp_runs'
+  seed: 9721
+
+  deterministic: False
+
+used_data: &used_data 'cub'
+shot_num: &shot_num 1
+
+data:
+  train:
+    bs: 1
+    nw: 5
+    ns: *shot_num
+    nq: 15
+    name: *used_data
+    episode: 10000
+
+  valid:
+    bs: 1
+    nw: 5
+    ns: *shot_num
+    nq: 15
+    name: *used_data
+    episode: 1000
+
+  test:
+    bs: 1
+    nw: 5
+    ns: *shot_num
+    nq: 15
+    name: *used_data
+    episode: 1000
+
+model:
+  network:
+    name: 'paclnet'
+    resume: null
+    backbone:
+      name: cov_net
+      params:
+        pooling_num: 2
+
+    idt: True
+    idt_params:
+      embed_num: 20
+      iters: 3
+      alpha: 0.4
+
+    pacl: True
+    pacl_mode: 'pro'
+    pacl_loss_weight:
+      - 1.0
+      - 0.3
+
+    rot: False
+    rot_loss_weight: 0.3
+
+    x_classifier: True
+    x_classifier_type: proto
+
+  learning:
+    epochs: 5
+    optimizer:
+      name: Adam
+      params:
+        betas:
+          - 0.5
+          - 0.99
+        weight_decay: 0.0
+
+    scheduler:
+      name: WarmMultiStonesScheduler
+      params:
+        warm_steps: 2000
+        stones: [ 20000, 40000 ]
+        base_lr: 1.0e-2
+        gamma: 0.1
+
+  io:
+    metric_save_freq: 100
+    metric_info_freq: 1000
+    model_eval_freq: 1
+    model_save_freq: 1
