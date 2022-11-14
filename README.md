@@ -54,4 +54,27 @@ python train_exp.py --config ./config/conv-idt.yml
 
 ## Citation
 If you find this paper or our code useful in your research, please consider citing:
+```bib
+@inproceedings{DBLP:conf/mm/WangFM22,
+  author    = {Chuanming Wang and
+               Huiyuan Fu and
+               Huadong Ma},
+  editor    = {Jo{\~{a}}o Magalh{\~{a}}es and
+               Alberto Del Bimbo and
+               Shin'ichi Satoh and
+               Nicu Sebe and
+               Xavier Alameda{-}Pineda and
+               Qin Jin and
+               Vincent Oria and
+               Laura Toni},
+  title     = {PaCL: Part-level Contrastive Learning for Fine-grained Few-shot Image
+               Classification},
+  booktitle = {{MM} '22: The 30th {ACM} International Conference on Multimedia, Lisboa,
+               Portugal, October 10 - 14, 2022},
+  pages     = {6416--6424},
+  publisher = {{ACM}},
+  year      = {2022},
+  doi       = {10.1145/3503161.3547997},
+}
+```
 
